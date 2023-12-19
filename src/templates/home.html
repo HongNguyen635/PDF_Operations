@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>PDF Operations</title>
+{% endblock title %}
+{% block content %}
+    <body class="min-h-screen bg-zinc-50 dark:bg-black dark:text-white">
+        <header class="dark:bg-gray-700 dark:bg-opacity-60 dark:text-white top-0 sticky">
+            <section class="max-w-4xl flex mx-6 p-3 justify-between items-center">
+                <h1 class="text-3xl font-roboto font-medium">
+                    <a href="#hero">PDF Operations</a>
+                </h1>
+                <div>
+                    <nav class="flex text-xl space-x-8" aria-label="menu">
+                        <!--Fix the link later-->
+                        <a href="#merge">Merge Files</a>
+                        <a href="#about">About</a>
+                    </nav>
+                </div>
+            </section>
+        </header>
+        <main class="max-w-5xl mx-auto">
+            <section id="hero"
+                     class="dark:text-white flex justify-center items-center p-8 mt-8">
+                <div class="flex flex-col">
+                    <h1 class="font-inter text-4xl font-bold">Customize Your PDF for Free</h1>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, explicabo adipisci minus ut, ducimus sint laborum itaque omnis est fugiat hic accusantium obcaecati consequuntur incidunt aliquam temporibus, reprehenderit numquam! Quo!
+                    </p>
+                </div>
+                <img src="../static/img/hero-2772x1965.png"
+                     alt="Hero Image"
+                     class="min-w-[50%]">
+            </section>
+        </main>
+    </body>
+{% endblock content %}

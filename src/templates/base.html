@@ -1,14 +1,27 @@
+{% load compress %}
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Operations</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endcompress %}
+
+    <link rel="shortcut icon" href="../static/pdf.ico" type="image/x-icon">
+    <script type="module" src="../static/js/main.js"></script>
 </head>
 
-<body>
-    {% block content %}
-    some content here
-    {% endblock %}
+<body class="bg-green-50">
+    <div class="container mx-auto mt-4">
+        {% block content %}
+        {% endblock content %}
+    </div>
 </body>
 
 </html>

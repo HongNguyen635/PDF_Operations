@@ -4,33 +4,58 @@
 {% endblock title %}
 {% block content %}
     <body class="min-h-screen bg-zinc-50 dark:bg-black dark:text-white">
-        <header class="dark:bg-gray-700 dark:bg-opacity-60 dark:text-white top-0 sticky">
-            <section class="max-w-4xl flex mx-6 p-3 justify-between items-center">
+        <header class="bg-slate-100 dark:bg-gray-700 dark:bg-opacity-60 dark:text-white top-0 sticky">
+            <section class="max-w-4xl flex mx-auto p-3 px-6 justify-between items-center">
                 <h1 class="text-3xl font-roboto font-medium">
                     <a href="#hero">PDF Operations</a>
                 </h1>
-                <div>
-                    <nav class="flex text-xl space-x-8" aria-label="menu">
+                <div class="hidden sm:block">
+                    <nav class="flex text-xl space-x-4" aria-label="menu">
                         <!--Fix the link later-->
-                        <a href="#merge">Merge Files</a>
-                        <a href="#about">About</a>
+                        <a href="#merge"
+                           class="transition hover:duration-300 hover:bg-slate-200 dark:hover:bg-gray-700 p-2 pt-1.5 px-4 rounded-full">Merge Files</a>
+                        <a href="#about"
+                           class="transition hover:duration-300 hover:bg-slate-200 dark:hover:bg-gray-700 p-2 pt-1.5 px-4 rounded-full">About</a>
                     </nav>
                 </div>
             </section>
         </header>
         <main class="max-w-5xl mx-auto">
             <section id="hero"
-                     class="dark:text-white flex justify-center items-center p-8 mt-8">
-                <div class="flex flex-col">
-                    <h1 class="font-inter text-4xl font-bold">Customize Your PDF for Free</h1>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, explicabo adipisci minus ut, ducimus sint laborum itaque omnis est fugiat hic accusantium obcaecati consequuntur incidunt aliquam temporibus, reprehenderit numquam! Quo!
-                    </p>
+                     class="dark:text-white flex flex-col-reverse sm:flex-row justify-center items-center p-8 mt-8">
+                <div class="flex flex-col p-8 sm:w-1/2">
+                    <h1 class="font-inter text-4xl sm:text-5xl font-bold sm:leading-[1.15]">Customize Your PDF For Free</h1>
+                    <p class="mt-2">Merge, rearrange, and customize your PDFs effortlessly with our seamless PDF toolkit.</p>
+                    <!--Fix the link-->
+                    <a href="#upload"
+                       class="font-semibold text-base bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out inline-flex items-center rounded-full justify-center p-2 px-6 min-w-fit max-w-fit mt-4">Start Uploading</a>
                 </div>
                 <img src="../static/img/hero-2772x1965.png"
                      alt="Hero Image"
                      class="min-w-[50%]">
             </section>
         </main>
+        <footer class="bg-slate-100 dark:bg-gray-700 dark:bg-opacity-60 dark:text-white">
+            <section class="border border-solid border-white flex flex-col items-center justify-around">
+                <h2 class="not-italic font-inter text-xl pt-1">Contact Me</h2>
+                <address class="border border-solid border-white flex flex-row justify-between items-center gap-1 sm:gap-4 px-6 py-2 max-w-[16rem] sm:max-w-xs mx-a">
+                    <a href="mailto:hong.nguyen.k54@gmail.com"
+                       target="_blank"
+                       class="hover:animate-pulse p-3">
+                        <img src="../static/img/icons/Mail.png" alt="Email logo">
+                    </a>
+                    <a href="https://github.com/HongNguyen635"
+                       target="_blank"
+                       class="hover:animate-pulse p-3">
+                        <img src="../static/img/icons/github.png" alt="GitHub logo">
+                    </a>
+                    <a href="http://www.linkedin.com/in/hong-nguyen-k/"
+                       target="_blank"
+                       class="hover:animate-pulse p-3">
+                        <img src="../static/img/icons/linkedIn.png" alt="LinkedIn logo">
+                    </a>
+                </address>
+            </section>
+        </footer>
     </body>
 {% endblock content %}

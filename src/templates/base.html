@@ -1,28 +1,21 @@
 {% load compress %}
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free PDF Operations">
-    <meta name="keywords" content="PDF">
-
-    {% block title %}
-    <title>PDF Operations</title>
-    {% endblock title %}
-
-    {% compress css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% endcompress %}
-
-    <link rel="shortcut icon" href="../static/pdf.ico" type="image/x-icon">
-    <script type="module" src="../static/js/main.js"></script>
-</head>
-
-{% block content %}
-{% endblock content %}
-
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Free PDF Operations">
+        <meta name="keywords" content="PDF">
+        {% block title %}
+            <title>PDF Operations</title>
+        {% endblock title %}
+        {% compress css %}
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% endcompress %}
+        <link rel="shortcut icon" href="../static/pdf.ico" type="image/x-icon">
+        <script type="module" src="../static/js/main.js"></script>
+    </head>
+    {% block content %}
+    {% endblock content %}
 </html>

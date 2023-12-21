@@ -13,8 +13,23 @@ const initApp = () => {
     hamburgerBtn.classList.toggle("toggle-btn");
   };
 
-  hamburgerBtn.addEventListener("click", toggleMenu);
-  mobileMenu.addEventListener("click", toggleMenu);
+  if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener("click", toggleMenu);
+    mobileMenu.addEventListener("click", toggleMenu);
+  }
+
+  // for different operations
+  const operationMenu = document.getElementById("operation-menu");
+  const uploadBtn = document.getElementById("upload-button");
+
+  const toggleOpMenu = () => {
+    operationMenu.classList.toggle("hidden");
+  };
+
+  if (uploadBtn && operationMenu) {
+    uploadBtn.addEventListener("click", toggleOpMenu);
+    operationMenu.addEventListener("click", toggleOpMenu);
+  }
 };
 
 document.addEventListener("DOMContentLoaded", initApp);

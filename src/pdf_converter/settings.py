@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # self-created
     'compressor',
+    'pages',
+    'pdf_manip'
 ]
 
 MIDDLEWARE = [

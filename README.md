@@ -11,7 +11,9 @@ A website that helps:
 - Frameworks: Django and Tailwind CSS
 - Languages: Python, HTML, CSS, and JavaScript
 
-## Work in progress. Preview of the home and about page:
+## Work in progress 
+
+Preview of the home and about page:
 
 https://github.com/HongNguyen635/PDF_Operations/assets/73915779/a2e77873-0d63-42c0-b530-197e83b0ee88
 

@@ -12,6 +12,11 @@
             <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.file_field }}
+            
+            {% for error in form.file_field.errors %}
+                <li class="text-red-500">{{ error }}</li>
+            {% endfor %}
+
             <button type="submit">Submit</button>
             </form>
 

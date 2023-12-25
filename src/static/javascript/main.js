@@ -30,6 +30,39 @@ const initApp = () => {
     uploadBtn.addEventListener("click", toggleOpMenu);
     operationMenu.addEventListener("click", toggleOpMenu);
   }
+
+  // UPLOAD FILES (PDF manip section)
+  // Listen to uploaded files
+  const uploadInput = document.getElementById("file-upload");
+  const listSection = document.getElementById("list-section");
+
+  // check the file type
+  function typeValidation(type) {
+    const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+    if (allowedTypes.includes(type)) {
+      return true;
+    }
+  }
+
+  // append the uploaded file to the list
+  function uploadFile(file) {
+    listSection.style.display = "block";
+    const newListItem = document.createElement("li");
+    newListItem.innerHTML = file.name;
+    listSection.appendChild(newListItem);
+  }
+
+  // if you can select the element
+  if (uploadInput) {
+    uploadInput.onchange = () => {
+      console.log(uploadInput.files.length);
+      [...uploadInput.files].forEach((file) => {
+        if (typeValidation(file.type)) {
+          uploadFile(file);
+        }
+      });
+    };
+  }
 };
 
 document.addEventListener("DOMContentLoaded", initApp);

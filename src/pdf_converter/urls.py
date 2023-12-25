@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pages.views import home_view, about_view
+from pdf_manip.views import MergeFileFormView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # add pages
     path('', home_view, name='home'),
-    path('about/', about_view, name='about')
+    path('about/', about_view, name='about'),
+
+    # add operation pages
+    path('merge/', MergeFileFormView.as_view(), name='merge-sucess')
 ]

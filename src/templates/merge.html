@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Combine PDF</title>
+{% endblock title %}
+
+{% block content %}
+    <body>
+        {% if not form_submitted %}
+            <!-- Form rendering when it hasn't been submitted -->
+            <h2>Upload Files</h2>
+            
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.file_field }}
+            <button type="submit">Submit</button>
+            </form>
+
+            <ul id="list-section" class="list-none hidden"></ul>
+        {% else %}
+            <!-- Content to display after a successful form submission -->
+            <h2>Upload Successful</h2>
+            <p>Thank you for submitting the form.</p>
+        {% endif %}
+    </body>
+{% endblock content %}

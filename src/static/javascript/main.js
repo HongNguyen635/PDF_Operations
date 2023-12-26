@@ -34,7 +34,13 @@ const initApp = () => {
   // UPLOAD FILES (PDF manip section)
   // Listen to uploaded files
   const uploadInput = document.getElementById("file-upload");
-  const listSection = document.getElementById("list-section");
+  const uploadList = document.getElementById("list-section");
+  const submitBtn = document.getElementById("submit-files");
+  const deleteSection = document.getElementById("delete-area");
+  const deleteList = document.getElementById("delete-list");
+
+  let fileCount = 0;
+  const fileArr = [];
 
   // check the file type
   function typeValidation(type) {
@@ -46,14 +52,33 @@ const initApp = () => {
 
   // append the uploaded file to the list
   function uploadFile(file) {
-    listSection.style.display = "block";
+    uploadList.style.display = "block";
+    deleteSection.style.display = "block";
     const newListItem = document.createElement("li");
+    newListItem.setAttribute("id", fileCount);
     newListItem.innerHTML = file.name;
-    listSection.appendChild(newListItem);
+    uploadList.appendChild(newListItem);
+
+    fileArr.push(file);
+    console.log(fileArr);
+    ++fileCount;
   }
 
   // if you can select the element
-  if (uploadInput) {
+  if (uploadInput && submitBtn && deleteSection && deleteList) {
+    // make the file upload list sortable
+    let sortableList = Sortable.create(uploadList, {
+      group: "shared",
+      animation: 150,
+    });
+
+    // make upload and delete list draggable
+    new Sortable(deleteList, {
+      group: "shared",
+      animation: 150,
+    });
+
+    // listen to uploaded files
     uploadInput.onchange = () => {
       console.log(uploadInput.files.length);
       [...uploadInput.files].forEach((file) => {
@@ -62,6 +87,37 @@ const initApp = () => {
         }
       });
     };
+
+    // submit the files for processing
+    submitBtn.addEventListener("click", async (event) => {
+      event.stopPropagation();
+
+      // add each file into the form in correct order
+      let listItems = uploadList.querySelectorAll("li");
+      let data = new FormData();
+      listItems.forEach(function (li, index) {
+        // Print information about each <li>
+        console.log(`Item ${index + 1} - ID: ${li.id}`);
+        data.append("file_field", fileArr[li.id], fileArr[li.id].name);
+      });
+
+      // try submit the form
+      try {
+        const csrftoken = Cookies.get("csrftoken");
+        const response = await fetch("/merge/", {
+          method: "POST",
+          headers: { "X-CSRFToken": csrftoken },
+          mode: "same-origin", // Do not send CSRF token to another domain.
+          body: data,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error("Upload failed:", error);
+      }
+    });
   }
 };
 

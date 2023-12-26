@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}
     <title>Combine PDF</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.1/Sortable.min.js"></script>
 {% endblock title %}
 
 {% block content %}
@@ -18,9 +20,16 @@
             {% endfor %}
 
             <button type="submit">Submit</button>
+            <div id="submit-files">Submit (Test)</div>
             </form>
 
-            <ul id="list-section" class="list-none hidden"></ul>
+            <ul id="list-section" class="list-none hidden"><h2>Your Uploads</h2></ul>
+            
+            <section id="delete-area" class="hidden">
+                <h2>Drag File Here to Delete</h2>
+                <ul id="delete-list" class="list-none border-4 border-dashed"></ul>
+            </section>
+            
         {% else %}
             <!-- Content to display after a successful form submission -->
             <h2>Upload Successful</h2>

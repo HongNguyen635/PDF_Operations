@@ -1,6 +1,5 @@
 from pypdf import PdfWriter, PdfReader  # watermark
 from pypdf import PdfMerger
-from PIL import Image
 import img2pdf
 import magic
 

@@ -1,92 +1,85 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
-    <title>About</title>
+   <title>About</title>
 {% endblock title %}
 {% block content %}
-    <body class="min-h-screen bg-zinc-50 dark:bg-black dark:text-white">
-        <header class="bg-slate-100 dark:bg-slate-800 dark:text-white top-0 sticky">
-            <section class="max-w-4xl flex mx-auto p-3 px-6 justify-between items-center">
-                <h1 class="text-3xl font-roboto font-medium">
-                    <span>PDF Operations</span>
-                </h1>
-                <nav class="hidden sm:block text-xl space-x-4" aria-label="menu">
-                    <a href="/"
-                       class="transition hover:duration-300 hover:bg-slate-200 dark:hover:bg-gray-700 p-2 pt-1.5 px-4 rounded-full">Home</a>
-                </nav>
-            </section>
-        </header>
-
-        <main class="max-w-5xl mx-auto">
-            <section id="about-statement"
-                     class="dark:text-white flex flex-col-reverse sm:flex-row justify-center items-center p-4 mt-8 scroll-mt-20">
-                <div class="flex flex-col p-8 sm:w-1/2">
-                    <h1 class="font-inter text-4xl sm:text-5xl font-bold sm:leading-[1.15]">About</h1>
-                    <p class="mt-2 mb-2">
-                        As a student, financial difficulty is everything. Because of that, we are prone
-                        to internet vulnerabilities. We often wish to do minor tasks for free, so that
-                        it won’t add additional cost to our tuition. Bad people exploit that by embedded
-                        viruses or security breaches to their websites and content files.
-                    </p>
-                    <p class="mt-2 mb-2">
-                        I created this tool in the hope that I can help other students, just like me, to
-                        compress and merge assignment files, without worrying about paying or security
-                        issues.
-                    </p>
-                </div>
-                <img src="../static/img/about-956x834.png"
-                     alt="Hero Image"
-                     class="max-w-xs">
-            </section>
-
-            <hr class="mx-auto bg-black dark:bg-white w-1/2" />
-            
-            <section id="credits"
-                     class="dark:text-white flex flex-col justify-center items-center p-4 mt-4 scroll-mt-20">
-                <h1 class="font-inter text-2xl sm:text-3xl text-center font-bold sm:leading-[1.15]">Image Credits</h1>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 p-8 gap-y-4 gap-x-12 sm:gap-x-8">
-
-                        <a href="https://www.freepik.com/icon/pdf_4726010#fromView=search&term=pdf+icon&page=1&position=7&track=ais&uuid=c373f3f9-1a99-4f08-809a-bb168604019d"
-                        target="_blank" class="hover:text-sky-500">PDF Icon</a>
-
-                        <a href="https://www.freepik.com/free-vector/online-document-concept-illustration_13247274.htm#query=pdf&position=0&from_view=search&track=sph&uuid=b6f910cf-4f95-4d7c-bf9b-0aaee8279663"
-                        target="_blank" class="hover:text-sky-500">Home Image</a>
-
-                        <a href="https://www.freepik.com/icon/upload_7157554#fromView=search&term=upload+file+icon&page=1&position=1&track=ais&uuid=7a4323d6-06ff-4c82-a9c2-c92135626f96"
-                        target="_blank" class="hover:text-sky-500">Upload Icon V1</a>
-
-                        <a href="https://www.freepik.com/icon/upload_4461291#fromView=search&term=upload+file+icon&page=3&position=64&track=ais&uuid=0f88b563-d4b4-4573-9cb5-7c0c8772c250"
-                        target="_blank" class="hover:text-sky-500">Upload Icon V2</a>
-
-                        <a href="https://www.freepik.com/icon/download-file_7157517#fromView=search&term=download+file+icon&page=2&position=50&track=ais&uuid=da8c3b0c-4df6-4e2c-a9f8-f6dc02c1685e"
-                        target="_blank" class="hover:text-sky-500">Download Icon</a>
-
-                        <a href="https://www.freepik.com/free-vector/concept-landing-page-transfer-concept_5569545.htm#query=combine%20document&position=7&from_view=search&track=ais&uuid=f36a02c7-8a39-4b96-887a-efd8b50a5514"
-                        target="_blank" class="hover:text-sky-500">Loading Image</a>
-
-                        <a href="https://www.freepik.com/free-vector/gradient-social-media-logo-collection_5543210.htm#query=social%20medias%20icon%20github&position=1&from_view=search&track=ais&uuid=090a641a-7585-4016-a31b-0674d5df0350"
-                        target="_blank" class="hover:text-sky-500">Contact Logos</a>
-
-                        <a href="https://www.freepik.com/icon/padlock_9172122#fromView=search&term=encrypt+pdf&track=ais&page=1&position=6&uuid=a3c085fb-931e-478d-a371-6f1e35e3006a"
-                        target="_blank" class="hover:text-sky-500">Encrypt Icon</a>
-
-                        <a href="https://www.freepik.com/icon/science-report_9978670#fromView=search&term=watermark+file&track=ais&page=1&position=12&uuid=364caf47-f591-4bef-b26d-9086fe855cba"
-                        target="_blank" class="hover:text-sky-500">Watermark Icon</a>
-
-                        <a href="https://www.freepik.com/icon/compressed-file_8873471#fromView=search&term=shrink+file+size&track=ais&page=1&position=44&uuid=d40e41a6-4538-4dd7-8067-440acc5f825c"
-                        target="_blank" class="hover:text-sky-500">Compress Icon</a>
-
-                        <a href="https://www.freepik.com/icon/data-model_13097411#fromView=search&term=organize+pdf&track=ais&page=1&position=35&uuid=609acef6-3e2c-4476-8ff4-b44c775d2db9"
-                        target="_blank" class="hover:text-sky-500">Organize Icon</a>
-
-                        <a href="https://www.freepik.com/icon/pdf_10265757#fromView=search&term=pdfs&track=ais&page=1&position=30&uuid=08168c73-12b9-4e43-babb-9ecd0dc80e3b"
-                        target="_blank" class="hover:text-sky-500">Combine Icon</a>
-
-                        <a href="https://www.freepik.com/free-vector/peeping-people-collection_6437961.htm#page=3&query=women%20hi&position=8&from_view=search&track=ais&uuid=244dadd2-79e8-4476-82c9-02d4b374eaee"
-                        target="_blank" class="hover:text-sky-500">About Image</a>
-                </div>
-            </section>
-        </main>
-        {% include "footer.html" %}
-    </body>
+   <body class="min-h-screen bg-zinc-50 dark:bg-black dark:text-white">
+      <header class="bg-slate-100 dark:bg-slate-800 dark:text-white top-0 sticky">
+         <section class="max-w-4xl flex mx-auto p-3 px-6 justify-between items-center">
+            <h1 class="text-3xl font-roboto font-medium">
+               <a href="{% url 'home' %}" class="">PDF Operations</a>
+            </h1>
+         </section>
+      </header>
+      <main class="max-w-5xl mx-auto">
+         <section id="about-statement"
+                  class="dark:text-white flex flex-col-reverse sm:flex-row justify-center items-center p-4 mt-8 scroll-mt-20">
+            <div class="flex flex-col p-8 sm:w-1/2">
+               <h1 class="font-inter text-4xl sm:text-5xl font-bold sm:leading-[1.15]">About</h1>
+               <p class="mt-2 mb-2">
+                  As a student, financial difficulty is everything. Because of that, we are prone
+                  to internet vulnerabilities. We often wish to do minor tasks for free, so that
+                  it won’t add additional cost to our tuition. Bad people exploit that by embedded
+                  viruses or security breaches to their websites and content files.
+               </p>
+               <p class="mt-2 mb-2">
+                  I created this tool in the hope that I can help other students, just like me, to
+                  compress and merge assignment files, without worrying about paying or security
+                  issues.
+               </p>
+            </div>
+            <img src="{% static 'img/about-956x834.png' %}"
+                 alt="Hero Image"
+                 class="max-w-xs">
+         </section>
+         <hr class="mx-auto bg-black dark:bg-white w-1/2" />
+         <section id="credits"
+                  class="dark:text-white flex flex-col justify-center items-center p-4 mt-4 scroll-mt-20">
+            <h1 class="font-inter text-2xl sm:text-3xl text-center font-bold sm:leading-[1.15]">Image Credits</h1>
+            <div class="grid grid-cols-2 sm:grid-cols-4 p-8 gap-y-4 gap-x-12 sm:gap-x-8">
+               <a href="https://www.freepik.com/icon/pdf_4726010#fromView=search&term=pdf+icon&page=1&position=7&track=ais&uuid=c373f3f9-1a99-4f08-809a-bb168604019d"
+                  target="_blank"
+                  class="hover:text-sky-500">PDF Icon</a>
+               <a href="https://www.freepik.com/free-vector/online-document-concept-illustration_13247274.htm#query=pdf&position=0&from_view=search&track=sph&uuid=b6f910cf-4f95-4d7c-bf9b-0aaee8279663"
+                  target="_blank"
+                  class="hover:text-sky-500">Home Image</a>
+               <a href="https://www.freepik.com/icon/upload_7157554#fromView=search&term=upload+file+icon&page=1&position=1&track=ais&uuid=7a4323d6-06ff-4c82-a9c2-c92135626f96"
+                  target="_blank"
+                  class="hover:text-sky-500">Upload Icon V1</a>
+               <a href="https://www.freepik.com/icon/upload_4461291#fromView=search&term=upload+file+icon&page=3&position=64&track=ais&uuid=0f88b563-d4b4-4573-9cb5-7c0c8772c250"
+                  target="_blank"
+                  class="hover:text-sky-500">Upload Icon V2</a>
+               <a href="https://www.freepik.com/icon/download-file_7157517#fromView=search&term=download+file+icon&page=2&position=50&track=ais&uuid=da8c3b0c-4df6-4e2c-a9f8-f6dc02c1685e"
+                  target="_blank"
+                  class="hover:text-sky-500">Download Icon</a>
+               <a href="https://www.freepik.com/free-vector/concept-landing-page-transfer-concept_5569545.htm#query=combine%20document&position=7&from_view=search&track=ais&uuid=f36a02c7-8a39-4b96-887a-efd8b50a5514"
+                  target="_blank"
+                  class="hover:text-sky-500">Loading Image</a>
+               <a href="https://www.freepik.com/free-vector/gradient-social-media-logo-collection_5543210.htm#query=social%20medias%20icon%20github&position=1&from_view=search&track=ais&uuid=090a641a-7585-4016-a31b-0674d5df0350"
+                  target="_blank"
+                  class="hover:text-sky-500">Contact Logos</a>
+               <a href="https://www.freepik.com/icon/padlock_9172122#fromView=search&term=encrypt+pdf&track=ais&page=1&position=6&uuid=a3c085fb-931e-478d-a371-6f1e35e3006a"
+                  target="_blank"
+                  class="hover:text-sky-500">Encrypt Icon</a>
+               <a href="https://www.freepik.com/icon/science-report_9978670#fromView=search&term=watermark+file&track=ais&page=1&position=12&uuid=364caf47-f591-4bef-b26d-9086fe855cba"
+                  target="_blank"
+                  class="hover:text-sky-500">Watermark Icon</a>
+               <a href="https://www.freepik.com/icon/compressed-file_8873471#fromView=search&term=shrink+file+size&track=ais&page=1&position=44&uuid=d40e41a6-4538-4dd7-8067-440acc5f825c"
+                  target="_blank"
+                  class="hover:text-sky-500">Compress Icon</a>
+               <a href="https://www.freepik.com/icon/data-model_13097411#fromView=search&term=organize+pdf&track=ais&page=1&position=35&uuid=609acef6-3e2c-4476-8ff4-b44c775d2db9"
+                  target="_blank"
+                  class="hover:text-sky-500">Organize Icon</a>
+               <a href="https://www.freepik.com/icon/pdf_10265757#fromView=search&term=pdfs&track=ais&page=1&position=30&uuid=08168c73-12b9-4e43-babb-9ecd0dc80e3b"
+                  target="_blank"
+                  class="hover:text-sky-500">Combine Icon</a>
+               <a href="https://www.freepik.com/free-vector/peeping-people-collection_6437961.htm#page=3&query=women%20hi&position=8&from_view=search&track=ais&uuid=244dadd2-79e8-4476-82c9-02d4b374eaee"
+                  target="_blank"
+                  class="hover:text-sky-500">About Image</a>
+            </div>
+         </section>
+      </main>
+      {% include "footer.html" %}
+   </body>
 {% endblock content %}

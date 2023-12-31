@@ -31,12 +31,24 @@ const initApp = () => {
     operationMenu.addEventListener("click", toggleOpMenu);
   }
 
+  // Listen to dropdown menu button
+  const dropdownBtn = document.getElementById("dropdown-button");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+
+  // if you can select the dropdown btn
+  if (dropdownBtn && dropdownMenu) {
+    dropdownBtn.addEventListener("click", () => {
+      dropdownMenu.classList.toggle("hidden");
+      dropdownMenu.classList.toggle("flex");
+    });
+  }
+
   // UPLOAD FILES (PDF manip section)
   // Listen to uploaded files
   const uploadInput = document.getElementById("file-upload");
+  const fileListSection = document.getElementById("uploaded-list");
   const uploadList = document.getElementById("list-section");
   const submitBtn = document.getElementById("submit-files");
-  const deleteSection = document.getElementById("delete-area");
   const deleteList = document.getElementById("delete-list");
 
   let fileCount = 0;
@@ -52,10 +64,11 @@ const initApp = () => {
 
   // append the uploaded file to the list
   function uploadFile(file) {
-    uploadList.style.display = "block";
-    deleteSection.style.display = "block";
+    submitBtn.style.display = "block";
+    fileListSection.style.display = "flex";
     const newListItem = document.createElement("li");
     newListItem.setAttribute("id", fileCount);
+    newListItem.setAttribute("class", "cursor-pointer py-1");
     newListItem.innerHTML = file.name;
     uploadList.appendChild(newListItem);
 
@@ -64,8 +77,8 @@ const initApp = () => {
     ++fileCount;
   }
 
-  // if you can select the element
-  if (uploadInput && submitBtn && deleteSection && deleteList) {
+  // if you can select the upload btn
+  if (uploadInput && uploadList && submitBtn && fileListSection && deleteList) {
     // make the file upload list sortable
     let sortableList = Sortable.create(uploadList, {
       group: "shared",

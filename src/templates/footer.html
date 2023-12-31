@@ -1,21 +1,22 @@
-<footer class="bg-slate-100 dark:bg-gray-700 dark:bg-opacity-60 dark:text-white py-4">
+{% load static %}
+<footer class="bg-slate-100 dark:bg-gray-700 dark:bg-opacity-60 dark:text-white py-4 mt-auto">
     <section class="flex flex-col items-center justify-around">
         <h2 class="not-italic font-semibold text-lg">Contact Me</h2>
         <address class="flex flex-row justify-between items-center gap-1 sm:gap-4 px-6 max-w-[16rem] sm:max-w-xs mx-a">
             <a href="mailto:hong.nguyen.k54@gmail.com"
                target="_blank"
                class="hover:animate-pulse p-3">
-                <img src="../static/img/icons/Mail.png" alt="Email logo">
+                <img src="{% static 'img/icons/Mail.png' %}">
             </a>
             <a href="https://github.com/HongNguyen635"
                target="_blank"
                class="hover:animate-pulse p-3">
-                <img src="../static/img/icons/github.png" alt="GitHub logo">
+                <img src="{% static 'img/icons/github.png' %}" alt="GitHub logo">
             </a>
-            <a href="http://www.linkedin.com/in/hong-nguyen-k/"
+            <a href="https://www.linkedin.com/in/hong-nguyen-k/"
                target="_blank"
                class="hover:animate-pulse p-3">
-                <img src="../static/img/icons/linkedIn.png" alt="LinkedIn logo">
+                <img src="{% static 'img/icons/linkedIn.png' %}" alt="LinkedIn logo">
             </a>
         </address>
     </section>

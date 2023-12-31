@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
     <title>PDF Operations</title>
 {% endblock title %}
@@ -18,7 +19,7 @@
                     <nav class="hidden sm:block text-xl space-x-4" aria-label="menu">
                         <a href="#tool-description"
                            class="transition hover:duration-300 hover:bg-slate-200 dark:hover:bg-gray-700 p-2 pt-1.5 px-4 rounded-full">Overview</a>
-                        <a href="about"
+                        <a href="{% url 'about' %}"
                            class="transition hover:duration-300 hover:bg-slate-200 dark:hover:bg-gray-700 p-2 pt-1.5 px-4 rounded-full">About</a>
                     </nav>
                 </div>
@@ -28,7 +29,8 @@
                 <nav class="flex flex-col items-center py-8" aria-label="mobile menu">
                     <a href="#tool-description"
                        class="hover:animate-pulse w-full text-center py-6">Overview</a>
-                    <a href="about" class="hover:animate-pulse w-full text-center py-6">About</a>
+                    <a href="{% url 'about' %}"
+                       class="hover:animate-pulse w-full text-center py-6">About</a>
                 </nav>
             </section>
             <!-- Fix the links later -->
@@ -36,7 +38,7 @@
                      class="absolute top-0 bg-transparent  w-full min-h-screen backdrop-blur-md text-5xl justify-center origin-top hidden">
                 <nav class="sticky top-1/3 w-2/3 rounded-lg bg-white dark:bg-slate-800 flex flex-row flex-wrap gap-8 justify-center items-center p-8 mx-auto shadow-lg"
                      aria-label="operation menu">
-                    <a href="merge"
+                    <a href="{% url 'merge-sucess' %}"
                        class="font-semibold text-base bg-slate-100 dark:bg-slate-700 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out inline-flex items-center rounded-full justify-center p-2 px-6 min-w-fit max-w-fit">Combine</a>
                     <a href="#upload"
                        class="font-semibold text-base bg-slate-100 dark:bg-slate-700 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out inline-flex items-center rounded-full justify-center p-2 px-6 min-w-fit max-w-fit">Compress</a>
@@ -59,7 +61,7 @@
                        href="#upload"
                        class="font-semibold text-base bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out inline-flex items-center rounded-full justify-center p-2 px-6 min-w-fit max-w-fit mt-4">Start Uploading</a>
                 </div>
-                <img src="../static/img/hero-2772x1965.png"
+                <img src="{% static 'img/hero-2772x1965.png' %}"
                      alt="Hero Image"
                      class="min-w-[50%]">
             </section>
@@ -68,7 +70,7 @@
                 <ul class="list-none mx-auto flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start gap-8">
                     <!--Merge File-->
                     <li class="w-2/3 sm:w-2/5 sm:max-w-[18rem] flex flex-col bg-white dark:bg-slate-800 py-6 px-6 rounded-3xl shadow-xl">
-                        <img src="../static/img/icons/merge-512x512.png "
+                        <img src="{% static 'img/icons/merge-512x512.png' %}"
                              alt="Merge PDF Icon"
                              class="mb-6 w-1/3 sm:w-1/4 self-center sm:place-self-start">
                         <h3 class="text-xl font-semibold text-black dark:text-white">Combine multiple PDFs into one file</h3>
@@ -78,7 +80,7 @@
                     </li>
                     <!-- Compress -->
                     <li class="w-2/3 sm:w-2/5 sm:max-w-[18rem] flex flex-col bg-white dark:bg-slate-800 py-6 px-6 rounded-3xl shadow-xl">
-                        <img src="../static/img/icons/compressed-512x512.png "
+                        <img src="{% static 'img/icons/compressed-512x512.png' %}"
                              alt="Merge PDF Icon"
                              class="mb-6 w-1/2 sm:w-1/3 self-center sm:place-self-start">
                         <h3 class="text-xl font-semibold text-black dark:text-white">Compress your PDF</h3>
@@ -88,7 +90,7 @@
                     </li>
                     <!-- Organize -->
                     <li class="w-2/3 sm:w-2/5 sm:max-w-[18rem] flex flex-col bg-white dark:bg-slate-800 py-6 px-6 rounded-3xl shadow-xl">
-                        <img src="../static/img/icons/organize-512x512.png "
+                        <img src="{% static 'img/icons/organize-512x512.png' %}"
                              alt="Merge PDF Icon"
                              class="mb-6 w-1/3 sm:w-1/4 self-center sm:place-self-start">
                         <h3 class="text-xl font-semibold text-black dark:text-white">Organize your PDF</h3>
@@ -98,7 +100,7 @@
                     </li>
                     <!-- Encrypt -->
                     <li class="w-2/3 sm:w-2/5 sm:max-w-[18rem] flex flex-col bg-white dark:bg-slate-800 py-6 px-6 rounded-3xl shadow-xl">
-                        <img src="../static/img/icons/encrypt-512x512.png "
+                        <img src="{% static 'img/icons/encrypt-512x512.png' %}"
                              alt="Merge PDF Icon"
                              class="mb-6 w-1/3 sm:w-1/4 self-center sm:place-self-start">
                         <h3 class="text-xl font-semibold text-black dark:text-white">Encrypt your PDF</h3>
@@ -108,7 +110,7 @@
                     </li>
                     <!-- Watermark -->
                     <li class="w-2/3 sm:w-2/5 sm:max-w-[18rem] flex flex-col bg-white dark:bg-slate-800 py-6 px-6 rounded-3xl shadow-xl">
-                        <img src="../static/img/icons/watermark-512x512.png "
+                        <img src="{% static 'img/icons/watermark-512x512.png' %}"
                              alt="Merge PDF Icon"
                              class="mb-6 w-1/3 sm:w-1/4 self-center sm:place-self-start">
                         <h3 class="text-xl font-semibold text-black dark:text-white">Add Watermark to your PDF</h3>

@@ -1,0 +1,30 @@
+<header class="bg-slate-100 dark:bg-slate-800 dark:text-white top-0 sticky">
+    <section class="max-w-4xl flex mx-auto p-3 px-6 justify-between items-center">
+        <h1 class="text-3xl font-roboto font-medium">
+            <a href="{% url 'home' %}" class="">PDF Operations</a>
+        </h1>
+        <nav class="text-xl space-x-4" aria-label="menu">
+            <button id="dropdown-button"
+                    class="transition hover:duration-300 hover:bg-slate-200 dark:hover:bg-gray-700 p-2 pt-1 px-4 py-1 flex items-center rounded-full">
+                Operations
+                <svg class="mt-0.5 ml-2 overflow-visible"
+                     width="6"
+                     height="3"
+                     aria-hidden="true">
+                    <path d="M0 0L4 4L8 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+            </button>
+            <div id="dropdown-menu"
+                 class="absolute top-full mt-1 gap-2 rounded-lg bg-white shadow ring-1 ring-slate-900/5 text-sm leading-6 py-2 font-semibold text-black hidden flex-col dark:bg-slate-800 dark:text-white">
+                <a href="{% url 'home' %}"
+                   class="font-semibold text-base hover:bg-slate-100 hover:dark:bg-slate-700 transition hover:duration-300 ease-in-out inline-flex items-center justify-center w-full px-6 py-2">Compress</a>
+                <a href="{% url 'merge-sucess' %}"
+                   class="font-semibold text-base hover:bg-slate-100 hover:dark:bg-slate-700 transition hover:duration-300 ease-in-out inline-flex items-center justify-center w-full px-6 py-2">Organize</a>
+                <a href="{% url 'merge-sucess' %}"
+                   class="font-semibold text-base hover:bg-slate-100 hover:dark:bg-slate-700 transition hover:duration-300 ease-in-out inline-flex items-center justify-center w-full px-6 py-2">Encrypt</a>
+                <a href="{% url 'merge-sucess' %}"
+                   class="font-semibold text-base hover:bg-slate-100 hover:dark:bg-slate-700 transition hover:duration-300 ease-in-out inline-flex items-center justify-center w-full px-6 py-2">Watermark</a>
+            </div>
+        </nav>
+    </section>
+</header>

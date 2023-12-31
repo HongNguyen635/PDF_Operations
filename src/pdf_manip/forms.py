@@ -43,7 +43,11 @@ class FileFieldForm(forms.Form):
     file_field = MultipleFileField()
 
     # add tailwind class to the input
-    file_field.widget.attrs.update({"class": "text-black"})
+    file_field.widget.attrs.update({"class": "hidden"})
 
     # add id
     file_field.widget.attrs.update({"id": "file-upload"})
+
+    # add accept type hint
+    file_field.widget.attrs.update(
+        {"accept": "application/pdf, image/png, image/jpeg"})

@@ -1,12 +1,11 @@
 from pypdf import PdfWriter, PdfReader  # watermark
-from pypdf import PdfMerger
 import img2pdf
 import magic
 
 
 def merge_PDFs(pdfs):
     # basic merger pattern
-    merger = PdfMerger()
+    merger = PdfWriter()
 
     for pdf in pdfs:
         pdf.seek(0)

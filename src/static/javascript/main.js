@@ -126,6 +126,8 @@ const initApp = () => {
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
+        } else {
+          // cont
         }
       } catch (error) {
         console.error("Upload failed:", error);

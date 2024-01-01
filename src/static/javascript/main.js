@@ -43,6 +43,8 @@ const initApp = () => {
     });
   }
 
+  ////////////////////////////////////
+
   // UPLOAD FILES (PDF manip section)
   // Listen to uploaded files
   const uploadInput = document.getElementById("file-upload");
@@ -50,6 +52,7 @@ const initApp = () => {
   const uploadList = document.getElementById("list-section");
   const submitBtn = document.getElementById("submit-files");
   const deleteList = document.getElementById("delete-list");
+  const resultFile = document.getElementById("result-download");
 
   let fileCount = 0;
   const fileArr = [];
@@ -77,8 +80,15 @@ const initApp = () => {
     ++fileCount;
   }
 
-  // if you can select the upload btn
-  if (uploadInput && uploadList && submitBtn && fileListSection && deleteList) {
+  // if you can select the upload, file list, and result elements
+  if (
+    uploadInput &&
+    uploadList &&
+    submitBtn &&
+    fileListSection &&
+    deleteList &&
+    resultFile
+  ) {
     // make the file upload list sortable
     let sortableList = Sortable.create(uploadList, {
       group: "shared",
@@ -127,7 +137,9 @@ const initApp = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         } else {
-          // cont
+          // if the process is ok, then show the result file
+          resultFile.classList.toggle("hidden");
+          resultFile.classList.toggle("flex");
         }
       } catch (error) {
         console.error("Upload failed:", error);

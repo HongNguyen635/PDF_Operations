@@ -9,10 +9,10 @@
     <body class="min-h-screen bg-zinc-50 dark:bg-black text-black dark:text-white flex flex-col">
         {% include "operations-header.html" %}
         <main class="max-w-5xl mx-auto">
-            <section class="bg-white dark:bg-slate-800 flex flex-col items-center mt-8 mb-8 py-4 px-6 rounded-lg shadow-xl">
+            <section class="bg-white dark:bg-slate-800 flex flex-col items-center mt-8 mb-8 py-4 px-6 pb-6 rounded-lg shadow-xl">
                 <h2 class="font-inter text-2xl sm:text-3xl font-bold py-2">Upload Files</h2>
                 <p>PDF, and Images (.PNG, .JPEG) are allowed.</p>
-                <div class="border-2 border-dashed rounded-md p-4 mt-4 flex flex-col items-center">
+                <div class="border-2 border-dashed border-slate-500 dark:border-zinc-200 rounded-md p-4 mt-4 flex flex-col items-center">
                     <img src="{% static 'img/upload-dark-512x512.png' %}"
                          class="w-1/5"
                          alt="Upload Dark Button">
@@ -34,7 +34,7 @@
                     <div class="w-full sm:w-1/2">
                         <h2 class="text-center font-inter font-semibold">Your Uploads</h2>
                         <ul id="list-section"
-                            class="list-none border-2 border-dashed rounded-md p-4 mt-4 flex flex-col items-center">
+                            class="list-none border-2 border-dashed border-slate-500 dark:border-zinc-200 rounded-md p-4 mt-4 flex flex-col items-center">
                         </ul>
                     </div>
                     <div class="w-full sm:w-1/2">
@@ -51,15 +51,16 @@
                      class="hidden cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg">
                     Submit
                 </div>
-                {% comment %} Continue {% endcomment %}
-                <hr class="mx-auto bg-black dark:bg-white w-1/2" />
-                <div id="result-download" class="border border-solid flex flex-col items-center">
-                    <h2 class="font-inter text-2xl sm:text-3xl font-bold py-2">Result</h2>
-                    <div class="flex">
-                        <img src="{% static 'img/icons/pdf-512x512.png' %}" alt="PDF Icon" class="w-1/6">
+                <div id="result-download" class="hidden flex-col items-center">
+                    <hr class="mx-auto bg-black dark:bg-white w-full my-8" />
+                    <h2 class="font-inter text-xl sm:text-2xl font-bold mb-2">Result</h2>
+                    <div class="flex justify-center items-center gap-4">
+                        <img src="{% static 'img/icons/pdf-512x512.png' %}"
+                             alt="PDF Icon"
+                             class="w-8">
                         <p>result.pdf</p>
-                        <a href="{{ MEDIA_URL }}/temp/result.pdf" download="result">
-                            <span class="cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg">Download</span>
+                        <a href="{{ MEDIA_URL }}../media/temp/result.pdf" download="result">
+                            <span class="bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg">Download</span>
                         </a>
                     </div>
                 </div>

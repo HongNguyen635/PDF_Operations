@@ -1,4 +1,4 @@
-from pypdf import PdfWriter, PdfReader  # watermark
+from pypdf import PdfWriter, PdfReader
 import img2pdf
 import magic
 
@@ -43,7 +43,7 @@ def watermark(source_pdf, watermark):
         # valid pdf
         watermark = check.pages[0]
     except Exception:
-        # Exception, he file is not a valid PDF
+        # Exception, the file is not a valid PDF
         # -> do nothing, keep as img file
         pass
 
@@ -54,3 +54,28 @@ def watermark(source_pdf, watermark):
         page.merge_page(watermark, over=False)
 
     writer.write("../media/temp/result.pdf")
+
+
+# compress
+def compress_PDF(pdf):
+    # removing duplication & reduce quality of images & lossless compression
+    # reference: https://pypdf.readthedocs.io/en/stable/user/file-size.html
+    reader = PdfReader(pdf)
+
+    writer = PdfWriter()
+
+    for page in reader.pages:
+        writer.add_page(page)
+
+    writer.add_metadata(reader.metadata)
+
+    for page in writer.pages:
+        # ⚠️ This has to be done on the writer, not the reader!
+        page.compress_content_streams()  # This is CPU intensive!
+
+        # reduce the image quality
+        for img in page.images:
+            img.replace(img.image, quality=80)
+
+    with open("../media/temp/result.pdf", "wb") as f:
+        writer.write(f)

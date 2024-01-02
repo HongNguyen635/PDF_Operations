@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pages.views import home_view, about_view
-from pdf_manip.views import MergeFileFormView
+from pdf_manip.views import MergeFileFormView, CompressFileFormView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,7 +29,8 @@ urlpatterns = [
     path('about/', about_view, name='about'),
 
     # add operation pages
-    path('merge/', MergeFileFormView.as_view(), name='merge-sucess')
+    path('merge/', MergeFileFormView.as_view(), name='merge-sucess'),
+    path('compress/', CompressFileFormView.as_view(), name='compress-sucess')
 ]
 
 if settings.DEBUG:

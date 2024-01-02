@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>Combine PDF</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.1/Sortable.min.js"></script>
+{% endblock title %}
+{% block content %}
+    <body class="min-h-screen bg-zinc-50 dark:bg-black text-black dark:text-white flex flex-col">
+        {% include "operations-header.html" %}
+        <main class="max-w-5xl mx-auto">
+            <section class="">
+                <h2 class="">Upload Files</h2>
+                <p>PDF, and Images (.PNG, .JPEG) are allowed.</p>
+                <div class="">
+                    <img src="{% static 'img/upload-dark-512x512.png' %}"
+                         class="w-1/5"
+                         alt="Upload Dark Button">
+                    <form method="post"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.file }}
+                        {% for error in form.file_field.errors %}<li class="text-red-500">{{ error }}</li>{% endfor %}
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                
+            </section>
+        </main>
+        {% include "footer.html" %}
+    </body>
+{% endblock content %}

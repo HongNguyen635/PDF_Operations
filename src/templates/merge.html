@@ -22,7 +22,7 @@
                         {% csrf_token %}
                         {{ form.file_field }}
                         <label for="file-upload"
-                               class="cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out p-1 px-4 rounded-lg">
+                               class="cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out p-1 px-4 rounded-lg shadow active:shadow-none">
                             Browse Files
                         </label>
                         {% for error in form.file_field.errors %}<li class="text-red-500">{{ error }}</li>{% endfor %}
@@ -48,8 +48,8 @@
                     </div>
                 </div>
                 <div id="submit-files"
-                     class="hidden cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg">
-                    Submit
+                     class="hidden cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">
+                    Combine
                 </div>
                 <div id="result-download" class="hidden flex-col items-center">
                     <hr class="mx-auto bg-black dark:bg-white w-full my-8" />
@@ -60,7 +60,7 @@
                              class="w-8">
                         <p>result.pdf</p>
                         <a href="{{ MEDIA_URL }}../media/temp/result.pdf" download="result">
-                            <span class="bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg">Download</span>
+                            <span class="bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">Download</span>
                         </a>
                     </div>
                 </div>

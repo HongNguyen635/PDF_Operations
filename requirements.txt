@@ -4,7 +4,7 @@ Django==5.0
 django-appconf==1.0.6
 django-compressor==4.4
 django-storages==1.14.2
-gunicorn==19.7.1
+gunicorn==21.2.0
 img2pdf==0.5.1
 libmagic==1.0
 pypdf==3.17.4

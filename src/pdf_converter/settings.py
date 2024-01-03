@@ -21,12 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(n+tuz)n0y7ef*brafybpa(bc^n!5wj0h#qx-om@iocc$6$i&e'
+# SECRET_KEY = 'django-insecure-(n+tuz)n0y7ef*brafybpa(bc^n!5wj0h#qx-om@iocc$6$i&e'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', 'django-insecure-&psk#na5l=p3q8_a+-$4w1f^lt3lx1c@d*p4x$ymm_rn7pwb87')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pdf-operations.onrender.com']
 
 
 # Application definition
@@ -123,15 +125,28 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
 
+# for media files
+AWS_ACCESS_KEY_ID = '0053f17e739ddef0000000001'
+AWS_SECRET_ACCESS_KEY = 'K005alCmA0PnukTQrte01Zz4WdGPrAg'
+AWS_STORAGE_BUCKET_NAME = 'PDF-Operations-Medias'
+# e.g., "s3.us-west-000.backblazeb2.com"
+AWS_S3_REGION_NAME = 's3.us-east-005.backblazeb2.com'
+
+# Use Backblaze B2 for storage for uploaded media files.
+DEFAULT_FILE_STORAGE = 'storages.backends.backblaze_b2.B2Storage'
+
+# URL that handles the media served from Backblaze B2.
+MEDIA_URL = f"https://{AWS_S3_REGION_NAME}/{AWS_STORAGE_BUCKET_NAME}/"
+
 # user-uploaded files
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -148,3 +163,17 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+
+# other security settings/warnings addressed
+SECURE_HSTS_SECONDS = 60
+
+SECURE_SSL_REDIRECT = True
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_HSTS_PRELOAD = True

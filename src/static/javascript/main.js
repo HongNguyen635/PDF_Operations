@@ -77,7 +77,7 @@ const initApp = () => {
     uploadList.appendChild(newListItem);
 
     fileArr.push(file);
-    console.log(fileArr);
+    // console.log(fileArr);
     ++fileCount;
   }
 
@@ -104,7 +104,7 @@ const initApp = () => {
 
     // listen to uploaded files
     uploadInput.onchange = () => {
-      console.log(uploadInput.files.length);
+      // console.log(uploadInput.files.length);
       [...uploadInput.files].forEach((file) => {
         if (typeValidation(file.type)) {
           uploadFile(file);
@@ -121,7 +121,7 @@ const initApp = () => {
       let data = new FormData();
       listItems.forEach(function (li, index) {
         // Print information about each <li>
-        console.log(`Item ${index + 1} - ID: ${li.id}`);
+        // console.log(`Item ${index + 1} - ID: ${li.id}`);
         data.append("file_field", fileArr[li.id], fileArr[li.id].name);
       });
 

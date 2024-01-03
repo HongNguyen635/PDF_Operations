@@ -156,6 +156,7 @@ const initApp = () => {
   const compressFileName = document.getElementById("compress-filename");
   const compressBtn = document.getElementById("compress-button");
   const compressDownload = document.getElementById("compress-result");
+  let acceptedFile;
 
   // check if we can select the element
   if (
@@ -172,6 +173,7 @@ const initApp = () => {
         compressUploadedDiv.classList.remove("hidden");
         compressUploadedDiv.classList.add("flex");
         compressFileName.innerText = compressInput.files[0].name;
+        acceptedFile = compressInput.files[0];
       }
     };
 
@@ -180,7 +182,7 @@ const initApp = () => {
       event.stopPropagation();
 
       const formData = new FormData();
-      formData.append("file", compressInput.files[0]);
+      formData.append("file", acceptedFile);
 
       // try submit the form
       try {
@@ -229,6 +231,7 @@ const initApp = () => {
   const watermarkBtn = document.getElementById("watermark-button");
   const watermarkDownload = document.getElementById("watermark-result");
   const errorMessage = document.getElementById("error-message");
+  const acceptedFiles = [null, null];
 
   // check if we can select the element
   if (
@@ -249,6 +252,7 @@ const initApp = () => {
         watermarkUploadedSourceDiv.classList.remove("hidden");
         watermarkUploadedSourceDiv.classList.add("flex");
         watermarkSourceFileName.innerText = watermarkInputSource.files[0].name;
+        acceptedFiles[0] = watermarkInputSource.files[0];
       }
     };
 
@@ -259,6 +263,7 @@ const initApp = () => {
         watermarkUploadedMarkDiv.classList.remove("hidden");
         watermarkUploadedMarkDiv.classList.add("flex");
         watermarkMarkFileName.innerText = watermarkInputMark.files[0].name;
+        acceptedFiles[1] = watermarkInputMark.files[0];
       }
     };
 
@@ -278,8 +283,8 @@ const initApp = () => {
       }
 
       const formData = new FormData();
-      formData.append("source_file", watermarkInputSource.files[0]);
-      formData.append("watermark", watermarkInputMark.files[0]);
+      formData.append("source_file", acceptedFiles[0]);
+      formData.append("watermark", acceptedFiles[1]);
 
       // try submit the form
       try {
@@ -346,6 +351,7 @@ const initApp = () => {
         encryptUploadedDiv.classList.remove("hidden");
         encryptUploadedDiv.classList.add("flex");
         encryptFileName.innerText = encryptInput.files[0].name;
+        acceptedFile = encryptInput.files[0];
       }
     };
 
@@ -385,7 +391,7 @@ const initApp = () => {
       }
 
       const formData = new FormData();
-      formData.append("file", encryptInput.files[0]);
+      formData.append("file", acceptedFile);
       formData.append("password", encryptPassword.value);
       formData.append("confirmed_password", encryptPasswordRetype.value);
 

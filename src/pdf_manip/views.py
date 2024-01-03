@@ -2,12 +2,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.urls import reverse
-from .process_file import merge_PDFs, compress_PDF, watermark, encrypt_PDF
 import magic
 from .forms import MultipleFileFieldForm
 from .forms import CompressUploadFileForm
 from .forms import WatermarkUploadForm
 from .forms import EncryptionUploadForm
+from .process_file import merge_PDFs, compress_PDF, watermark, encrypt_PDF
 
 
 # Create your views here.
@@ -140,10 +140,15 @@ class WatermarkFormView(SingleFileInputFormView):
         super().__init__(WatermarkUploadForm, "watermark",
                          "watermark.html", reverse("watermark-success"))
 
+
 # class for encryption view
-
-
 class EncryptionFormView(SingleFileInputFormView):
     def __init__(self):
         super().__init__(EncryptionUploadForm, "encryption",
                          "encryption.html", reverse("encryption-success"))
+
+
+# ---------------------
+# view for organize pdf (will be fully implemented in the future)
+def organize_view(request, *args, **kwargs):
+    return render(request, 'organize.html')

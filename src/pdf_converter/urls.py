@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from pages.views import home_view, about_view
 from pdf_manip.views import MergeFileFormView, CompressFileFormView, WatermarkFormView, EncryptionFormView
+from pdf_manip.views import organize_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -32,7 +33,10 @@ urlpatterns = [
     path('merge/', MergeFileFormView.as_view(), name='merge-success'),
     path('compress/', CompressFileFormView.as_view(), name='compress-success'),
     path('watermark/', WatermarkFormView.as_view(), name='watermark-success'),
-    path('encrypt/', EncryptionFormView.as_view(), name='encryption-success')
+    path('encrypt/', EncryptionFormView.as_view(), name='encryption-success'),
+
+    path('organize/', organize_view, name='organize-success'),
+
 ]
 
 if settings.DEBUG:

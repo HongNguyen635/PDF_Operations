@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>Organize PDF</title>
+{% endblock title %}
+{% block content %}
+    <body class="min-h-screen bg-zinc-50 dark:bg-black text-black dark:text-white flex flex-col">
+        {% include "operations-header.html" %}
+        <main class="max-w-5xl mx-auto my-auto">
+            <section class="dark:text-white flex flex-col justify-center items-center pt-4 pb-8 mt-8 mx-4">
+                <h1 class="font-inter text-4xl sm:text-5xl font-bold text-center sm:leading-[1.15]">Thank You for Visiting</h1>
+                <p class="my-2 py-2 text-center">This page is currently under construction...</p>
+                <img src="{% static 'img/loading-1905x1218.png' %}"
+                     alt="Loading Image"
+                     class="w-1/2 my-2">
+                <a href="{% url 'home' %}"
+                   class="font-semibold text-base bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 transition hover:duration-300 ease-in-out inline-flex items-center rounded-full justify-center p-2 px-6 min-w-fit max-w-fit mt-4">Back to Home Page</a>
+            </section>
+        </main>
+        {% include "footer.html" %}
+    </body>
+{% endblock content %}

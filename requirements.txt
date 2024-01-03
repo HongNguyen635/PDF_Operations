@@ -5,6 +5,7 @@ Django==5.0
 django-appconf==1.0.6
 django-compressor==4.4
 django-storages==1.14.2
+gunicorn==19.7.1
 img2pdf==0.5.1
 jsbeautifier==1.14.11
 json5==0.9.14

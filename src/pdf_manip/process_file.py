@@ -36,16 +36,24 @@ def merge_PDFs(pdfs):
 
 # watermark
 def watermark(source_pdf, watermark):
-    # check if the watermark is a pdf
-    try:
-        check = PdfReader(watermark)
+    # check if the watermark is a pdf or img
+    mime_type = magic.from_buffer(watermark.read(1024), mime=True)
 
-        # valid pdf
-        watermark = check.pages[0]
-    except Exception:
-        # Exception, the file is not a valid PDF
-        # -> do nothing, keep as img file
-        pass
+    if mime_type in ['image/jpeg', 'image/png']:
+        watermark.seek(0)  # reset
+
+        # converting into chunks using img2pdf
+        pdf_bytes = img2pdf.convert(watermark)
+
+        # opening or creating temp pdf file for the img
+        file = open("./media/temp/tempImg.pdf", "wb")
+        file.write(pdf_bytes)
+        file.close()
+
+    read_watermark = PdfReader(watermark)
+
+    # only use 1st page if multiple pages are presented
+    watermark = read_watermark.pages[0]
 
     writer = PdfWriter(clone_from=source_pdf)
 
@@ -53,7 +61,7 @@ def watermark(source_pdf, watermark):
         # here set to False for watermarking
         page.merge_page(watermark, over=False)
 
-    writer.write("../media/temp/result.pdf")
+    writer.write("./media/temp/result.pdf")
 
 
 # compress
@@ -77,5 +85,22 @@ def compress_PDF(pdf):
         for img in page.images:
             img.replace(img.image, quality=80)
 
-    with open("../media/temp/result.pdf", "wb") as f:
+    with open("./media/temp/result.pdf", "wb") as f:
+        writer.write(f)
+
+
+# encrypt
+def encrypt_PDF(pdf, password):
+    reader = PdfReader(pdf)
+    writer = PdfWriter()
+
+    # Add all pages to the writer
+    for page in reader.pages:
+        writer.add_page(page)
+
+    # Add a password to the new PDF
+    writer.encrypt(password, algorithm="AES-256")
+
+    # Save the new PDF to a file
+    with open("./media/temp/result.pdf", "wb") as f:
         writer.write(f)

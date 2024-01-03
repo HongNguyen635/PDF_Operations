@@ -1,11 +1,13 @@
-from .forms import SingleUploadFileForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from .forms import MultipleFileFieldForm
 from django.urls import reverse
-from .process_file import merge_PDFs, compress_PDF
+from .process_file import merge_PDFs, compress_PDF, watermark, encrypt_PDF
 import magic
+from .forms import MultipleFileFieldForm
+from .forms import CompressUploadFileForm
+from .forms import WatermarkUploadForm
+from .forms import EncryptionUploadForm
 
 
 # Create your views here.
@@ -61,16 +63,17 @@ class MultipleFileFieldFormView(FormView):
 # class for the merge view
 class MergeFileFormView (MultipleFileFieldFormView):
     def __init__(self):
-        super().__init__("merge", "merge.html", reverse("merge-sucess"))
+        super().__init__("merge", "merge.html", reverse("merge-success"))
 
 
 # base view class for single file input
 # view for the single upload file field
 class SingleFileInputFormView(FormView):
-    form_class = SingleUploadFileForm
+    # form_class = SingleUploadFileForm
 
-    def __init__(self, operation, template_name=None, success_url=None, *args, **kwargs):
+    def __init__(self, form_class, operation, template_name=None, success_url=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.form_class = form_class
         self.operation = operation  # see what type operation to use
         self.template_name = template_name
         self.success_url = success_url
@@ -99,11 +102,22 @@ class SingleFileInputFormView(FormView):
     # what to do if form is valid
 
     def form_valid(self, form):
-        file = form.cleaned_data["file"]
 
         # depends on which operations to call
         if (self.operation == 'compress'):
+            file = form.cleaned_data["file"]
             compress_PDF(file)
+
+        elif (self.operation == "watermark"):
+            source_file = form.cleaned_data["source_file"]
+            watermark_file = form.cleaned_data["watermark"]
+            watermark(source_file, watermark_file)
+
+        elif (self.operation == "encryption"):
+            encrypt_file = form.cleaned_data["file"]
+            password = form.cleaned_data["password"]
+            encrypt_PDF(encrypt_file, password)
+
         else:
             print("Cont")
 
@@ -114,6 +128,22 @@ class SingleFileInputFormView(FormView):
 
 
 # class for the compress view
-class CompressFileFormView (SingleFileInputFormView):
+class CompressFileFormView(SingleFileInputFormView):
     def __init__(self):
-        super().__init__("compress", "compress.html", reverse("compress-sucess"))
+        super().__init__(CompressUploadFileForm, "compress",
+                         "compress.html", reverse("compress-success"))
+
+
+# class for watermark view
+class WatermarkFormView(SingleFileInputFormView):
+    def __init__(self):
+        super().__init__(WatermarkUploadForm, "watermark",
+                         "watermark.html", reverse("watermark-success"))
+
+# class for encryption view
+
+
+class EncryptionFormView(SingleFileInputFormView):
+    def __init__(self):
+        super().__init__(EncryptionUploadForm, "encryption",
+                         "encryption.html", reverse("encryption-success"))

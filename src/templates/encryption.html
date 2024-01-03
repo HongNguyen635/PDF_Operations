@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-    <title>Compress PDF</title>
+    <title>Encrypt PDF</title>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.1/Sortable.min.js"></script>
 {% endblock title %}
@@ -11,7 +11,6 @@
         <main class="max-w-5xl mx-auto">
             <section class="">
                 <h2 class="">Upload Files</h2>
-                <p>Only PDF is allowed.</p>
                 <div class="">
                     <img src="{% static 'img/upload-dark-512x512.png' %}"
                          class="w-1/5"
@@ -20,23 +19,39 @@
                           enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.file }}
-                        <label for="upload-input-compress"
+                        <label for="upload-input-encrypt"
                                class="cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out p-1 px-4 rounded-lg shadow active:shadow-none">
                             Browse File
                         </label>
+                        <p>Please upload your PDF file</p>
+
+                        {{ form.password }}
+                        <label for="show-password">Show Password</label>
+                        <input type="checkbox" name="show-pass" id="show-password">
+                        <p>Please enter your encryption password</p>
+
+                        {{ form.confirmed_password }}
+                        <label for="show-password-retype">Show Password</label>
+                        <input type="checkbox" name="show-pass-retype" id="show-password-retype">
+                        <p>Please retype your password to confirm</p>
+
                         {% for error in form.file_field.errors %}<li class="text-red-500">{{ error }}</li>{% endfor %}
                     </form>
                 </div>
                 
-                <div id="uploaded-compress" class="hidden">
+
+                <div id="uploaded-encrypt" class="hidden">
                     <!-- Add file icon -->
-                    <p id="compress-filename"></p>
+                    <p id="encrypt-filename"></p>
                 </div>
-                <div id="compress-button"
+                <div id="encrypt-button"
                      class="hidden cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">
-                    Compress
+                    Encrypt
                 </div>
-                <div id="compress-result" class="hidden flex-col items-center">
+                <div id="password-error-message" class="hidden text-red-500">
+                    <p>Your entered and retype passwords does not match or you did not enter a password!</p>
+                </div>
+                <div id="encrypt-result" class="hidden flex-col items-center">
                     <hr class="mx-auto bg-black dark:bg-white w-full my-8" />
                     <h2 class="font-inter text-xl sm:text-2xl font-bold mb-2">Result</h2>
                     <div class="flex justify-center items-center gap-4">

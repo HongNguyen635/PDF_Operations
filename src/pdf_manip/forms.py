@@ -66,7 +66,7 @@ class SingleFileField(forms.FileField):
         return result
 
 
-# multiple files input form
+# multiple files input form: for merge
 class MultipleFileFieldForm(forms.Form):
     file_field = MultipleFileField()
 
@@ -81,10 +81,58 @@ class MultipleFileFieldForm(forms.Form):
         {"accept": "application/pdf, image/png, image/jpeg"})
 
 
-# single file input form
-class SingleUploadFileForm(forms.Form):
+# single file input form: for compress
+class CompressUploadFileForm(forms.Form):
     file = SingleFileField()
 
+    # add tailwind class to the input
+    file.widget.attrs.update({"class": "hidden"})
+
+    # add id
+    file.widget.attrs.update({"id": "upload-input-compress"})
+
     # add accept type hint
-    file.widget.attrs.update(
+    file.widget.attrs.update({"accept": "application/pdf"})
+
+
+# form for watermark
+class WatermarkUploadForm(forms.Form):
+    source_file = SingleFileField()
+    watermark = SingleFileField()
+
+    # add tailwind class to the input
+    source_file.widget.attrs.update({"class": "hidden"})
+    watermark.widget.attrs.update({"class": "hidden"})
+
+    # add id
+    source_file.widget.attrs.update({"id": "upload-input-watermark-source"})
+    watermark.widget.attrs.update({"id": "upload-input-watermark-mark"})
+
+    # add accept type hint
+    source_file.widget.attrs.update({"accept": "application/pdf"})
+    watermark.widget.attrs.update(
         {"accept": "application/pdf, image/png, image/jpeg"})
+
+
+# form for encryption
+class EncryptionUploadForm(forms.Form):
+    file = SingleFileField()
+    password = forms.CharField(
+        max_length=32, widget=forms.PasswordInput, required=True)
+    confirmed_password = forms.CharField(
+        max_length=32, widget=forms.PasswordInput, required=True)
+
+    # add tailwind class to the input
+    file.widget.attrs.update({"class": "hidden"})
+
+    # add id
+    file.widget.attrs.update({"id": "upload-input-encrypt"})
+
+    # add accept type hint
+    file.widget.attrs.update({"accept": "application/pdf"})
+
+    # add place holder
+    password.widget.attrs.update(
+        {"placeholder": "password", "id": "encrypt-password"})
+    confirmed_password.widget.attrs.update(
+        {"placeholder": "retype password", "id": "encrypt-password-retype"})

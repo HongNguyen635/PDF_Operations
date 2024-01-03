@@ -254,7 +254,8 @@ const initApp = () => {
 
     // check for uploaded watermark file
     watermarkInputMark.onchange = () => {
-      if (watermarkInputMark.files[0].type == "application/pdf") {
+      const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+      if (allowedTypes.includes(watermarkInputMark.files[0].type)) {
         watermarkUploadedMarkDiv.classList.remove("hidden");
         watermarkUploadedMarkDiv.classList.add("flex");
         watermarkMarkFileName.innerText = watermarkInputMark.files[0].name;

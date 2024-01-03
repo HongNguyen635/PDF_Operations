@@ -9,48 +9,66 @@
     <body class="min-h-screen bg-zinc-50 dark:bg-black text-black dark:text-white flex flex-col">
         {% include "operations-header.html" %}
         <main class="max-w-5xl mx-auto">
-            <section class="">
-                <h2 class="">Upload Files</h2>
+            <section class="bg-white dark:bg-slate-800 flex flex-col items-center mt-8 mb-8 py-4 px-6 pb-6 mx-8 rounded-lg shadow-xl">
+                <h2 class="font-inter text-2xl sm:text-3xl font-bold py-2">Upload File</h2>
                 <p>Only PDF is allowed.</p>
-                <div class="">
+
+                <div class="border-2 border-dashed border-slate-500 dark:border-zinc-200 rounded-md p-4 mt-4 flex flex-col items-center">
                     <img src="{% static 'img/upload-dark-512x512.png' %}"
                          class="w-1/5"
                          alt="Upload Dark Button">
+
                     <form method="post"
-                          enctype="multipart/form-data">
+                          enctype="multipart/form-data"
+                          class="mt-2 p-2 flex flex-col gap-4 items-center">
                         {% csrf_token %}
                         {{ form.file }}
                         <label for="upload-input-compress"
                                class="cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out p-1 px-4 rounded-lg shadow active:shadow-none">
                             Browse File
                         </label>
-                        {% for error in form.file_field.errors %}<li class="text-red-500">{{ error }}</li>{% endfor %}
+
+                        {% for error in form.file_field.errors %}
+                        <li class="text-red-500">{{ error }}</li>
+                        {% endfor %}
                     </form>
                 </div>
-                
-                <div id="uploaded-compress" class="hidden">
-                    <!-- Add file icon -->
-                    <p id="compress-filename"></p>
+
+                <div id="uploaded-compress"
+                     class="hidden flex-col gap-4 justify-center items-center mt-4 py-2 sm:max-w-[34rem]">
+                    <h2 class="text-center font-inter font-semibold">Your Upload</h2>
+
+                    <div class="w-full flex items-center gap-2">
+                        <img src="{% static 'img/icons/pdf-512x512.png' %}"
+                             alt="PDF Icon"
+                             class="w-8">
+                        <p id="compress-filename"></p>
+                    </div>
                 </div>
+
                 <div id="compress-button"
                      class="hidden cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">
                     Compress
                 </div>
+
                 <div id="compress-result" class="hidden flex-col items-center">
                     <hr class="mx-auto bg-black dark:bg-white w-full my-8" />
+
                     <h2 class="font-inter text-xl sm:text-2xl font-bold mb-2">Result</h2>
+
                     <div class="flex justify-center items-center gap-4">
                         <img src="{% static 'img/icons/pdf-512x512.png' %}"
                              alt="PDF Icon"
                              class="w-8">
+
                         <p>result.pdf</p>
+
                         <a href="{{ MEDIA_URL }}../media/temp/result.pdf" download="result">
                             <span class="bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">Download</span>
                         </a>
                     </div>
-                </div>
-            </section>
-        </main>
-        {% include "footer.html" %}
-    </body>
-{% endblock content %}
+                </section>
+            </main>
+            {% include "footer.html" %}
+        </body>
+    {% endblock content %}

@@ -133,6 +133,10 @@ class EncryptionUploadForm(forms.Form):
 
     # add place holder
     password.widget.attrs.update(
-        {"placeholder": "password", "id": "encrypt-password"})
+        {"placeholder": "password",
+         "id": "encrypt-password",
+         "class": "text-black dark:text-white rounded py-1 px-2 border border-black border-solid dark:border-zinc-200 bg-white dark:bg-slate-800"})
     confirmed_password.widget.attrs.update(
-        {"placeholder": "retype password", "id": "encrypt-password-retype"})
+        {"placeholder": "retype password",
+         "id": "encrypt-password-retype",
+         "class": "text-black dark:text-white rounded py-1 px-2 border border-black border-solid dark:border-zinc-200 bg-white dark:bg-slate-800"})

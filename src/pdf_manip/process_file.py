@@ -10,7 +10,7 @@ def merge_PDFs(pdfs):
     for pdf in pdfs:
         pdf.seek(0)
         mime_type = magic.from_buffer(pdf.read(1024), mime=True)
-        print(mime_type)
+        # print(mime_type)
 
         if mime_type in ['image/jpeg', 'image/png']:
             pdf.seek(0)  # reset
@@ -35,31 +35,36 @@ def merge_PDFs(pdfs):
 
 
 # watermark
-def watermark(source_pdf, watermark):
+def watermark(source_pdf, watermark_file):
     # check if the watermark is a pdf or img
-    mime_type = magic.from_buffer(watermark.read(1024), mime=True)
+    watermark_file.seek(0)  # reset
+    mime_type = magic.from_buffer(watermark_file.read(1024), mime=True)
 
     if mime_type in ['image/jpeg', 'image/png']:
-        watermark.seek(0)  # reset
+        watermark_file.seek(0)  # reset
 
         # converting into chunks using img2pdf
-        pdf_bytes = img2pdf.convert(watermark)
+        pdf_bytes = img2pdf.convert(watermark_file)
 
         # opening or creating temp pdf file for the img
         file = open("./media/temp/tempImg.pdf", "wb")
         file.write(pdf_bytes)
         file.close()
 
-    read_watermark = PdfReader(watermark)
+        read_watermark = PdfReader("./media/temp/tempImg.pdf")
+
+    else:
+        # watermark is a pdf
+        read_watermark = PdfReader(watermark_file)
 
     # only use 1st page if multiple pages are presented
-    watermark = read_watermark.pages[0]
+    watermark_file = read_watermark.pages[0]
 
     writer = PdfWriter(clone_from=source_pdf)
 
     for page in writer.pages:
         # here set to False for watermarking
-        page.merge_page(watermark, over=False)
+        page.merge_page(watermark_file, over=False)
 
     writer.write("./media/temp/result.pdf")
 

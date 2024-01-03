@@ -9,56 +9,80 @@
     <body class="min-h-screen bg-zinc-50 dark:bg-black text-black dark:text-white flex flex-col">
         {% include "operations-header.html" %}
         <main class="max-w-5xl mx-auto">
-            <section class="">
-                <h2 class="">Upload Files</h2>
-                <div class="">
+            <section class="bg-white dark:bg-slate-800 flex flex-col items-center mt-8 mb-8 py-4 px-6 pb-6 mx-8 rounded-lg shadow-xl">
+                <h2 class="font-inter text-2xl sm:text-3xl font-bold py-2">Upload File</h2>
+
+                <div class="border-2 border-dashed border-slate-500 dark:border-zinc-200 rounded-md p-4 mt-4 flex flex-col items-center">
                     <img src="{% static 'img/upload-dark-512x512.png' %}"
                          class="w-1/5"
                          alt="Upload Dark Button">
+
                     <form method="post"
-                          enctype="multipart/form-data">
+                          enctype="multipart/form-data"
+                          class="mt-2 p-2 flex flex-col gap-4 items-center">
                         {% csrf_token %}
+                        <p>Please upload your PDF file:</p>
+
+                        <div id="uploaded-encrypt"
+                             class="hidden flex-col gap-4 justify-center items-center sm:max-w-[34rem]">
+                            <div class="w-full flex items-center gap-2">
+                                <img src="{% static 'img/icons/pdf-512x512.png' %}"
+                                     alt="PDF Icon"
+                                     class="w-8">
+                                <p id="encrypt-filename"></p>
+                            </div>
+                        </div>
+                        
                         {{ form.file }}
                         <label for="upload-input-encrypt"
                                class="cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out p-1 px-4 rounded-lg shadow active:shadow-none">
                             Browse File
                         </label>
-                        <p>Please upload your PDF file</p>
 
-                        {{ form.password }}
-                        <label for="show-password">Show Password</label>
-                        <input type="checkbox" name="show-pass" id="show-password">
-                        <p>Please enter your encryption password</p>
+                        <div>
+                            <p class="mb-2">Please enter your encryption password:</p>
+                            {{ form.password }}
+                            <input type="checkbox" name="show-pass" id="show-password" class="ml-2">
+                            <label for="show-password" class="ml-1">Show</label>
+                        </div>
 
-                        {{ form.confirmed_password }}
-                        <label for="show-password-retype">Show Password</label>
-                        <input type="checkbox" name="show-pass-retype" id="show-password-retype">
-                        <p>Please retype your password to confirm</p>
+                        <div>
+                            <p class="mb-2">Please retype your password to confirm:</p>
+                            {{ form.confirmed_password }}
+                            <input type="checkbox"
+                                   name="show-pass-retype"
+                                   id="show-password-retype"
+                                   class="ml-2">
+                            <label for="show-password-retype" class="ml-1">Show</label>
+                        </div>
 
                         {% for error in form.file_field.errors %}<li class="text-red-500">{{ error }}</li>{% endfor %}
                     </form>
                 </div>
-                
 
-                <div id="uploaded-encrypt" class="hidden">
-                    <!-- Add file icon -->
-                    <p id="encrypt-filename"></p>
-                </div>
                 <div id="encrypt-button"
                      class="hidden cursor-pointer bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">
                     Encrypt
                 </div>
-                <div id="password-error-message" class="hidden text-red-500">
-                    <p>Your entered and retype passwords does not match or you did not enter a password!</p>
+
+                <div id="password-error-message" class="hidden text-red-500  p-2 w-2/3">
+                    <p>
+                        Your entered and retype passwords <u>does not match</u> or you <u>did not enter</u> a password!
+                    </p>
                 </div>
+
                 <div id="encrypt-result" class="hidden flex-col items-center">
                     <hr class="mx-auto bg-black dark:bg-white w-full my-8" />
+
                     <h2 class="font-inter text-xl sm:text-2xl font-bold mb-2">Result</h2>
+
                     <div class="flex justify-center items-center gap-4">
                         <img src="{% static 'img/icons/pdf-512x512.png' %}"
                              alt="PDF Icon"
                              class="w-8">
+
                         <p>result.pdf</p>
+                        
                         <a href="{{ MEDIA_URL }}../media/temp/result.pdf" download="result">
                             <span class="bg-emerald-200 dark:bg-emerald-900 hover:bg-emerald-300 dark:hover:bg-teal-700 active:text-white dark:active:text-black transition hover:duration-300 ease-in-out mt-4 p-1 px-4 rounded-lg shadow active:shadow-none">Download</span>
                         </a>
